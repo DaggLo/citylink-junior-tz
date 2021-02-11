@@ -1,0 +1,32 @@
+---
+
+# These options are for default parser
+parserOptions:
+  ecmaVersion: 11
+  sourceType: module
+
+env:
+  node: true
+  es2020: true
+
+plugins:
+  - jest
+
+extends:
+  - airbnb-base
+  - "plugin:jest/recommended"
+  - "plugin:import/errors"
+  - "plugin:import/warnings"
+
+rules:
+  no-console: off
+  no-underscore-dangle:
+    - error
+    - allow:
+      - "__filename"
+      - "__dirname"
+  import/extensions:
+    - error
+    - ignorePackages
+
+reportUnusedDisableDirectives: true
