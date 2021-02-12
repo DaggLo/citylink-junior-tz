@@ -1,57 +1,41 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { isValidTimeInterval, hasIntersections } from '../src/2.js';
 
-import gendiff from '../index.js';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf8').trimEnd();
-
-const json1 = getFixturePath('1.json');
-const json2 = getFixturePath('2.json');
-const yaml1 = getFixturePath('1.yaml');
-const yaml2 = getFixturePath('2.yaml');
-
-describe('Standard cases.', () => {
-  const expectedStylish = readFile('expected.stylish');
-  const expectedPlain = readFile('expected.plain');
-  const rawJson = readFile('expected.json');
-  const expectedJson = JSON.stringify(JSON.parse(rawJson), null, 2);
-
-  const expectedOutputs = [
-    ['stylish', expectedStylish],
-    ['plain', expectedPlain],
-    ['json', expectedJson],
+describe('Is time interval valid ?', () => {
+  const validTimeIntervals = [
+    ['09:00-11:00'],
+    ['11:00-13:00'],
+    ['15:00-16:00'],
+    ['17:00-20:00'],
+    ['20:30-21:30'],
+    ['21:30-22:30'],
   ];
-  const sameTypeFiles = [['json', json1, json2], ['yaml', yaml1, yaml2]];
-  const differentTypeFiles = [['"yaml" and "json"', yaml1, json2]];
+  const invalidTimeIntervals = [
+    ['09:00 -11:00'],
+    ['11:00- 13:00'],
+    ['15 :00 - 16 :00'],
+    ['37:00_20:00'],
+    ['200:30-21:90'],
+    ['as1:30-22:3h0'],
+  ];
 
-  describe.each(expectedOutputs)('Testing %p output format.', (formatterName, expected) => {
-    test.each(sameTypeFiles)('Comparing files of %p type.', (type, file1, file2) => {
-      expect(gendiff(file1, file2, formatterName)).toEqual(expected);
-    });
+  test.each(validTimeIntervals)('Valid interval - %p.', (interval) => {
+    expect(isValidTimeInterval(interval)).toBeTruthy();
+  });
 
-    test.each(differentTypeFiles)('Comparing %s files.', (type, file1, file2) => {
-      expect(gendiff(file1, file2, formatterName)).toEqual(expected);
-    });
+  test.each(invalidTimeIntervals)('Not valid interval - %p.', (interval) => {
+    expect(isValidTimeInterval(interval)).toBeFalsy();
   });
 });
 
-describe('Corner cases.', () => {
-  test('Comparing files with the same content.', () => {
-    const expectedSame = readFile('expected.same');
+describe('Has intersections between time intervals ?', () => {
+  const newIntervals = [
+    ['09:00-11:00', true],
+    ['11:00-13:00', true],
+    ['14:00-16:00', false],
+    ['14:00-15:00', false],
+  ];
 
-    expect(gendiff(json1, yaml1)).toEqual(expectedSame);
-  });
-
-  test('Comparing with an empty file.', () => {
-    const emptyFile1 = getFixturePath('empty.json');
-    const emptyFile2 = getFixturePath('empty.yml');
-
-    const expectedEmpty = readFile('expected.empty');
-
-    expect(gendiff(emptyFile1, json1)).toEqual(expectedEmpty);
-    expect(gendiff(emptyFile2, yaml1)).toEqual(expectedEmpty);
+  test.each(newIntervals)('Has intersections - %p.', (interval, result) => {
+    expect(hasIntersections(interval)).toEqual(result);
   });
 });
