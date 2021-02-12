@@ -19,6 +19,7 @@ extends:
   - "plugin:import/warnings"
 
 rules:
+  camelcase: off
   no-console: off
   no-underscore-dangle:
     - error
