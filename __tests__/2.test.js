@@ -10,12 +10,12 @@ describe('Is time interval valid ?', () => {
     ['21:30-22:30'],
   ];
   const invalidTimeIntervals = [
-    ['09:00 -11:00'],
-    ['11:00- 13:00'],
-    ['15 :00 - 16 :00'],
-    ['37:00_20:00'],
-    ['200:30-21:90'],
-    ['as1:30-22:3h0'],
+    ['09:00-31:00'],
+    ['11:80-13:00'],
+    ['15:00-16:70'],
+    ['37:00-20:00'],
+    ['20:70-41:50'],
+    ['41:30-22:80'],
   ];
 
   test.each(validTimeIntervals)('Valid interval - %p.', (interval) => {
@@ -31,6 +31,8 @@ describe('Has intersections between time intervals ?', () => {
   const newIntervals = [
     ['09:00-11:00', true],
     ['11:00-13:00', true],
+    ['11:00-15:00', true],
+    ['09:00-10:05', true],
     ['14:00-16:00', false],
     ['14:00-15:00', false],
   ];
