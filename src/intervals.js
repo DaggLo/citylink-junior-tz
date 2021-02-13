@@ -10,19 +10,21 @@ const isValidTimeInterval = (interval) => interval
 
 const hasIntersections = (interval) => {
   const [
-    [beginHour, beginMinutes], [endHour, endMinutes],
+    beginHour, beginMinutes, endHour, endMinutes,
   ] = interval
     .split('-')
-    .map((e) => e.split(':'))
-    .map(([hours, minutes]) => [parseInt(hours, 10), parseInt(minutes, 10)]);
+    .flatMap((time) => time
+      .split(':')
+      .map((e) => parseInt(e, 10)));
 
   for (const current of baseIntervals) { // eslint-disable-line
     const [
-      [currentBeginHour, currentBeginMinutes], [currentEndHour, currentEndMinutes],
+      currentBeginHour, currentBeginMinutes, currentEndHour, currentEndMinutes,
     ] = current
       .split('-')
-      .map((e) => e.split(':'))
-      .map(([hours, minutes]) => [parseInt(hours, 10), parseInt(minutes, 10)]);
+      .flatMap((time) => time
+        .split(':')
+        .map((e) => parseInt(e, 10)));
 
     if (beginHour < currentEndHour && endHour > currentBeginHour) {
       return true;
