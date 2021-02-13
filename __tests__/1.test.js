@@ -1,4 +1,4 @@
-import searchWorkers from '../src/1.js';
+import searchWorkers from '../src/findWorker.js';
 
 describe('Standard cases.', () => {
   const fullMatched = [

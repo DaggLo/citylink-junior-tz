@@ -1,4 +1,4 @@
-import { isValidTimeInterval, hasIntersections } from '../src/2.js';
+import { isValidTimeInterval, hasIntersections } from '../src/intervals.js';
 
 describe('Is time interval valid ?', () => {
   const validTimeIntervals = [
