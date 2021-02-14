@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Олимпиада</title>
+
+    <!-- Bootstrap -->
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style media="screen">
+      body {
+        text-align: center;
+      }
+
+      .header_cell:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body class="container">
+    <header class="row">
+      <div class="col-md-12">
+        <h1 class="title">Олимпиада</h1>
+      </div>
+    </header>
+
+    <main class="row">
+      <section class="inputfield">
+        <form class="col-md-6 mx-auto" action="index.html" method="post">
+          <div class="mb-3">
+            <label for="inputCompeptitors" class="form-label">Участники</label>
+            <input id="inputCompeptitors" class="form-control" type="text" name="competitors" placeholder="введите имена участников через запятую" pattern="[А-Яа-яЁё,]+">
+          </div>
+          <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+      </section>
+
+      <section id="competitorsTable" class="table">
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ошибка</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" data-modal-part="body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="./chart.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('emptyInputEvent', (e) => {
+        const { detail: { message } } = e;
+        const modalBody = document.querySelector('[data-modal-part="body"]');
+        modalBody.textContent = message;
+
+        const myModal = new bootstrap.Modal(document.getElementById('errorModal'));
+        myModal.show();
+      });
+    </script>
+  </body>
+</html>
