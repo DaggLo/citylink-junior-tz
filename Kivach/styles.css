@@ -1,0 +1,265 @@
+@font-face {
+  font-family: 'Verdana MS';
+  src: url('./fonts/Verdana.ttf');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1920px;
+}
+
+.change-font-btn {
+  border: none;
+  border-radius: 5%;
+  text-transform: uppercase;
+  color: white;
+  font-size: 20px;
+  background: radial-gradient(rgb(62, 62, 62), rgb(33, 33, 33));
+}
+
+.change-font-btn:hover {
+  cursor: pointer;
+}
+
+.login-form {
+  width: 653px;
+  margin: 0 auto;
+  height: 324px;
+  border: 12px rgb(220, 220, 220) solid;
+  border-radius: 40px;
+  display: flex;
+}
+
+.login-form__font_verdana {
+  font-family: 'Verdana MS', sans-serif;
+}
+
+.login-form__font_roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-form__label-block {
+  height: 100px;
+  padding: 26px 36px;
+}
+
+.login-form__label {
+  font-size: 26px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.login-form__inputs-block {
+  flex: 5.2;
+  background: radial-gradient(rgb(62, 62, 62), rgb(33, 33, 33));
+  border-radius: 28px 0 0 28px;
+}
+
+.login-form__submit-btn {
+  flex: 1;
+  border: none;
+  background: radial-gradient(ellipse closest-side at 50% 85%, rgb(153, 218, 235) 5px, rgb(44, 166, 202));
+  border-radius: 0 28px 28px 0;
+}
+
+.inputs-group {
+  display: flex;
+  height: 100px;
+}
+
+.inputs-group__block_w-1 {
+  flex: 1;
+  padding: 17px 0px 5px 20px;
+}
+
+.inputs-group__block_w-9 {
+  flex: 9;
+}
+
+.inputs-group__block_w-13 {
+  flex: 13;
+  padding: 20px;
+}
+
+.login-form__input-label {
+  display: block;
+  font-size: 15px;
+  color: white;
+  width: 200px;
+  height: 34px;
+}
+
+.login-form__username {
+  padding-left: 20px;
+}
+
+.login-form__password {
+
+}
+
+.login-form-control {
+  width: 200px;
+  height: 40px;
+}
+
+.login-form-control:focus {
+
+}
+
+.login-form-control__username {
+  margin-left: 20px;
+  background: white url('./img/user.png') no-repeat 165px 50%;
+  border-radius: 10px;
+  font-size: 20px;
+  padding-left: 10px;
+  letter-spacing: 0.01em;
+  padding-right: 35px;
+}
+
+.login-form-control__password {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  padding-left: 7px;
+  background: white url('./img/padlock.png') no-repeat 162px 50%;
+  border-radius: 10px;
+}
+
+.login-form-control__checkbox-label {
+  padding: 5px 18px;
+}
+
+.login-form-control__checkbox-label input {
+  display: none;
+}
+
+.login-form-control__checkbox {
+  border-radius: 50%;
+  background-color: #F5F5F5;
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  position: relative;
+  margin-right: 2px;
+  top: 5px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+.login-form-control__checkbox-label input:checked + .login-form-control__checkbox::before {
+  content: '';
+  position: absolute;
+  left: 7px; top: 7px;
+  background: #343434;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+}
+
+.login-form-control__checkbox-label:hover  {
+  cursor: pointer;
+}
+
+.login-form__forgot-pwd {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  display: inline-block;
+  margin: 9px 3px;
+}
+
+.login-form__forgot-pwd:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.login-form__submit-btn {
+
+}
+
+.login-form__submit-btn:hover {
+  cursor: pointer;
+}
+
+.login-form__submit-btn-label {
+  color: white;
+  text-transform: uppercase;
+  font-size: 35px;
+  position: relative;
+  top: 17%;
+}
+
+.login-form__submit-btn-icon {
+  background: url('./img/Shape_3.png') no-repeat 1px 1%;
+  width: 70px;
+  height: 100px;
+  position: relative;
+  top: -7%;
+  left: 15%;
+}
+
+@media (min-width: 300px) and (max-width: 700px) {
+  .container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .change-font-btn {
+    width: 100%;
+    border-radius: 0;
+    padding: 20px;
+  }
+
+  .login-form {
+    width: 100%;
+    border: none;
+    display: block;
+    height: auto;
+  }
+
+  .login-form__inputs-block {
+    width: 100%;
+    border-radius: 0;
+    height: auto;
+  }
+
+  .inputs-group {
+    display: block;
+    padding-right: 20px;
+    height: auto;
+  }
+
+  .login-form__username {
+    padding: 0;
+  }
+
+  .login-form-control {
+    width: 100%;
+  }
+
+  .login-form-control__username {
+    margin: 0;
+    background: white url('./img/user.png') no-repeat 99% 50%;
+  }
+
+  .login-form-control__password {
+    padding: 0 35px 0 10px;
+    background: white url('./img/padlock.png') no-repeat 99% 50%;
+  }
+
+  .login-form-control__checkbox {
+    width: 23px;
+  }
+
+  .login-form__submit-btn {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .login-form__submit-btn-icon {
+    display: none;
+  }
+}
