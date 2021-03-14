@@ -1,7 +1,7 @@
 {
-  "name": "citylink-junior-tz",
+  "name": "test-jobs",
   "version": "1.0.0",
-  "description": "These are challenges for getting job in the Citylink.",
+  "description": "These are testing tasks for getting job in various companies.",
   "main": "index.js",
   "scripts": {
     "test": "npx jest"
